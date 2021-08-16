@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from "react";
-import { Dimensions, Image, Text, View, FlatList } from "react-native";
+import {  Image, Text, View, FlatList } from "react-native";
 
 import Icon from "react-native-vector-icons/Fontisto";
 import { Input } from "react-native-elements";
@@ -12,7 +12,7 @@ import { Input } from "react-native-elements";
 import { Header, Footer } from "../../components";
 import { HealthOrbitImage } from "../../assets";
 import { styles } from "./styles";
-import { Divider } from "react-native-elements/dist/divider/Divider";
+import { Divider } from "react-native-elements";
 import { COLOR_PRESETS } from "../../presets/colors";
 
 export class HomeScreen extends Component {
@@ -29,7 +29,7 @@ export class HomeScreen extends Component {
           inputStyle={styles.input}
           containerStyle={styles.inputRootContainer}
           placeholder="Search for pathologies, laboratories"
-          leftIcon={<Icon name="search" size={20} color="black" />}
+          leftIcon={<Icon name="search" size={18} color="gray" />}
         />
 
         <Text style={styles.testHeader}>Top Diagnostic Test</Text>
@@ -47,63 +47,39 @@ export class HomeScreen extends Component {
   renderTestCard() {
     return (
       <View style={styles.cardRootContainer}>
-        <View style={{ padding: 15 }}>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <View style={styles.cardContentContainer}>
+          <View style={styles.cardHeaderContainer}>
             <Image
               source={require("../../assets/images/image.png")}
-              style={{ width: 40, height: 40, resizeMode: "contain" }}
+              style={styles.cardImg}
             />
-            <Text style={{ marginLeft: 20, fontWeight: "bold", fontSize: 15 }}>
-              Vitamin B 12
-            </Text>
+            <Text style={styles.testName}>Vitamin B 12</Text>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              width: "100%",
-              marginTop: 8,
-            }}
-          >
-            <View style={{ flex: 0.8 }}>
-              <Text style={{ fontSize: 12, fontWeight: "200" }}>
-                Known as Vit B12
-              </Text>
-
-              <Text style={{ fontSize: 12, fontWeight: "200" }}>
-                Conventional Blood
-              </Text>
+          <View style={styles.cardBodyContainer}>
+            <View style={{ flex: 0.7 }}>
+              <Text style={styles.cardBodyText}>Known as Vit B12</Text>
+              <Text style={styles.cardBodyText}>Conventional Blood</Text>
             </View>
-            <View
-              style={{
-                flex: 0.2,
-                marginLeft: 4,
-                justifyContent: "center",
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontWeight: "bold",
-                }}
-              >
-                {"\u20B9"}500
-              </Text>
+            <View style={styles.priceContainer}>
+              <Text style={styles.priceText}>{"\u20B9"}500</Text>
             </View>
           </View>
         </View>
-        <Divider />
-        <Text style={{ textAlign: "center" }}>Add</Text>
+        <Divider color={COLOR_PRESETS.PRIMARY.DARK} />
+        <Text style={styles.addText}>ADD</Text>
       </View>
     );
   }
 
   render() {
     return (
-      <View style={styles.rootContainer}>
-        <Header />
-        {this.renderBody()}
-        <Footer />
-      </View>
+      <>
+        <View style={styles.rootContainer}>
+          <Header />
+          {this.renderBody()}
+          <Footer />
+        </View>
+      </>
     );
   }
 }
