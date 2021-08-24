@@ -10,6 +10,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import HomeScreen from "../screens/home";
 import SignIn from "../screens/signin";
+import LabSchedule from "../screens/lab_scehdule";
 
 export default function Navigation() {
   return (
@@ -26,6 +27,7 @@ const Stack = createStackNavigator();
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="LabSchedule" component={LabSchedule} />
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="SignIn" component={SignIn} />
     </Stack.Navigator>

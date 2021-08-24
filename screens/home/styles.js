@@ -1,5 +1,7 @@
 import { StyleSheet, Dimensions } from "react-native";
+
 import { moderateScale, verticalScale } from "react-native-size-matters";
+
 import { COLOR_PRESETS } from "../../presets/colors";
 
 const spacingPresets = {};
