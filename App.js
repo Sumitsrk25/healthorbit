@@ -4,12 +4,21 @@ import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import Navigation from "./navigation";
+import AppStateContextProvider from "./providers/app-state/app-state.provider";
+import AppToaster from "./components/app-toaster";
+import { View } from "react-native";
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <StatusBar />
-      <Navigation />
+      <AppStateContextProvider>
+        <StatusBar backgroundColor="red" />
+        <View style={{ flex: 1, borderColor: "red", borderWidth: 5 }}>
+          <Navigation />
+        </View>
+
+        <AppToaster />
+      </AppStateContextProvider>
     </SafeAreaProvider>
   );
 }
