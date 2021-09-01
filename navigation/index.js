@@ -27,7 +27,10 @@ const Stack = createStackNavigator();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName={"Home"}
+    >
       <Stack.Screen name="APIDemo" component={APIDemo} />
       <Stack.Screen name="LabSchedule" component={LabSchedule} />
       <Stack.Screen name="Home" component={HomeScreen} />

@@ -4,19 +4,37 @@
  */
 
 import React, { Component } from "react";
-import {  Image, Text, View, FlatList } from "react-native";
+import { Image, Text, View, FlatList } from "react-native";
 
 import Icon from "react-native-vector-icons/Fontisto";
-import { Input } from "react-native-elements";
+import { Input, Divider } from "react-native-elements";
 
 import { Header, Footer } from "../../components";
 import { HealthOrbitImage } from "../../assets";
 import { styles } from "./styles";
-import { Divider } from "react-native-elements";
+import ApiClient from "../../utils/api_client";
+
 import { COLOR_PRESETS } from "../../presets/colors";
 
 export class HomeScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      testList: [],
+    };
+  }
+
+  componentDidMount() {
+    const formData = new FormData();
+    formData.append("action", "getTests");
+
+    ApiClient.post("", formData).then(({ data }) => {
+      this.setState({ testList: data });
+    });
+  }
+
   renderBody() {
+    const { testList } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.logoContainer}>
@@ -34,9 +52,9 @@ export class HomeScreen extends Component {
 
         <Text style={styles.testHeader}>Top Diagnostic Test</Text>
         <FlatList
-          data={[1, 2, 3, 4]}
+          data={testList}
           numColumns={2}
-          renderItem={({ item }) => this.renderTestCard(item)}
+          renderItem={({ item, index }) => this.renderTestCard(item, index)}
           contentContainerStyle={styles.listContainer}
           columnWrapperStyle={styles.columnWrapper}
         />
@@ -44,7 +62,7 @@ export class HomeScreen extends Component {
     );
   }
 
-  renderTestCard() {
+  renderTestCard(item, index) {
     return (
       <View style={styles.cardRootContainer}>
         <View style={styles.cardContentContainer}>
@@ -53,7 +71,7 @@ export class HomeScreen extends Component {
               source={require("../../assets/images/image.png")}
               style={styles.cardImg}
             />
-            <Text style={styles.testName}>Vitamin B 12</Text>
+            <Text style={styles.testName}>{item.sName}</Text>
           </View>
           <View style={styles.cardBodyContainer}>
             <View style={{ flex: 0.7 }}>

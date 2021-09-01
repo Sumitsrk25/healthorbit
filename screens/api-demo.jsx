@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { ScrollView, StyleSheet, Text, View, FlatList } from "react-native";
 
-import AppConstants from "../app-constant";
 import { Footer, Header } from "../components";
 import { AppStateContext } from "../providers/app-state/app-state.provider";
 import ApiClient from "../utils/api_client";
@@ -26,7 +25,7 @@ export default class APIDemo extends Component {
     console.log("the sharedState is>>>", sharedState.userState.userID);
 
     const formData = new FormData();
-    formData.append("action", "getCategory");
+    formData.append("action", "getTests");
 
     ApiClient.post("", formData).then(({ data }) => {
       setTimeout(() => {
