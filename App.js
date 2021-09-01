@@ -13,9 +13,7 @@ export default function App() {
     <SafeAreaProvider>
       <AppStateContextProvider>
         <StatusBar backgroundColor="red" />
-        <View style={{ flex: 1, borderColor: "red", borderWidth: 5 }}>
-          <Navigation />
-        </View>
+        <Navigation />
 
         <AppToaster />
       </AppStateContextProvider>
